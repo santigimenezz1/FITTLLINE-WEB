@@ -4,7 +4,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 const styles = StyleSheet.create({
     container__tarjetaCalentamiento:{
         width:"100%",
-        height:RFValue(100),
+        height:RFValue(95),
         borderWidth:1,
         padding:10,
         borderRadius:10,
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     },
     texth2:{
         color:"white",
-        fontSize: RFValue(15),
+        fontSize: RFValue(16),
         fontFamily: 'NunitoSans_400Regular',
         letterSpacing:1
 

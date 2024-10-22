@@ -14,7 +14,6 @@ const DetalleCalientamiento = ( {navigation} ) => {
         style={styles.container__detalleCalentamiento} 
         contentContainerStyle={styles.container__detalleCalentamiento}
     >
-        <Text style={styles.detalleCalentamiento__title}><FontAwesome5 name="play" size={18} color="white" />  Calentamiento</Text>
            {
                 data &&
                 data.data.ejercicios.calentamiento.map((ejercicio)=>(

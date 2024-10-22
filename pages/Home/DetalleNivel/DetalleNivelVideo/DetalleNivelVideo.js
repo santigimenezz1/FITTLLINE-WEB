@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const styles = StyleSheet.create({
   botonActive: {
    borderWidth: 2,
     borderColor: "white",
-    width: "45%",
-     height: 40,
+    width: RFValue(130),
+     height: RFValue(40),
       borderRadius: 14,
        display: "flex",
         justifyContent: "center",
@@ -14,9 +15,9 @@ const styles = StyleSheet.create({
   } ,
   botonDesactivado: {
     borderWidth: 2, borderColor: "white",
-    width: "45%",
-     height: 40,
-      borderRadius: 14,
+    width: RFValue(130),
+    height: RFValue(40),
+    borderRadius: 14,
        display: "flex",
         justifyContent: "center",
          alignItems: "center",

@@ -96,9 +96,9 @@ const DetalleNivelVideo = () => {
 
         <ScrollView>
 
-        <View style={{  backgroundColor: "black",paddingBottom:RFValue(50), height:"100%"}}>
+        <View style={{  backgroundColor: "black",paddingBottom:RFValue(50), height:500}}>
             <View style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: 30 }}>
-                <View style={{display:"flex", width:"90%", marginBottom:10, flexDirection:"row-reverse", justifyContent:"space-between"}}>
+                <View style={{display:"flex", width:"80%", marginBottom:10, flexDirection:"row-reverse", justifyContent:"space-between"}}>
                     <View>
                         <View style={{display:"flex", flexDirection:"row", gap:5}}>
                             {ejercicio.estrellas.completas.map(() => (

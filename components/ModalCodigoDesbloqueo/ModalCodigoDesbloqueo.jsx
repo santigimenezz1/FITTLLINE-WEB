@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
 import TarjetaIngresoCodigo from '../../pages/Home/TarjetaIngesoCodigo/TarjetaingresoCodigo';
 import TarjetaNivelDetalle from '../../pages/Home/DetalleNivel/TarjetaNivelDetalle/TarjetaNivelDetalle';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const ModalCodigoDesbloqueo = ( {nivel, tiempo, navigation, ejercicio} ) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    width:"90%",
+    width: RFValue("40%"),
     backgroundColor: "hsl(216, 13%, 8%)",
     borderRadius: 20,
     padding: 35,

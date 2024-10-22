@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
     },
     text:{
         color:"white",
-        fontSize: RFValue(25), // Ajusta el tamaño de la fuente de manera responsiva
+        fontSize: RFValue(20), // Ajusta el tamaño de la fuente de manera responsiva
         letterSpacing:1,
         fontFamily: 'NunitoSans_400Regular'
     },
     texth2:{
         color:"white",
-        fontSize: RFValue(14),
+        fontSize: RFValue(16),
         fontFamily: 'NunitoSans_400Regular',
         letterSpacing:1
          // Ajusta el tamaño de la fuente de manera responsiva

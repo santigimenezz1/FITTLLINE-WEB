@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 
 
 const styles = StyleSheet.create({
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
 ,    },
 detalleCalentamiento__title:{
     color:"white",
-    fontSize:18,
+    fontSize:RFValue(14),
     margin:10,
     marginTop:20
 }

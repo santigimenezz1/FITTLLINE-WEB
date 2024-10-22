@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     paddingBottom: 60,
   },
   home__introText: {
-    fontSize: RFValue(18),
+    fontSize: RFValue(16),
     color: "white",
     marginTop: 30,
     marginBottom: 40,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.7,
   },
   home__sectionTitle: {
-    fontSize: RFValue(20),
+    fontSize: RFValue(18),
     color: "white",
     fontFamily: 'NunitoSans_400Regular',
     marginTop: 30,
@@ -38,6 +38,11 @@ const styles = StyleSheet.create({
   },
   home__tipsContainer: {
     marginTop: 30,
+
+    display:"flex",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center"
   },
   home__buttonText: {
     color: "white",

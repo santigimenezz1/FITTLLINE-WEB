@@ -28,47 +28,39 @@ function MyTabs() {
         tabBarStyle: {
           backgroundColor: 'black',
           paddingBottom: 5,
-          height: RFValue(95),
+          height: RFValue(80),
           borderTopColor:"black",
           borderTopWidth:2,
-          paddingBottom:20,
-          
-          
-          
+          paddingBottom:20, 
         },
       }}
     >
       <Tab.Screen name="Ejercicios" component={HomeNavigator} options={{
-        tabBarIcon: () => <FontAwesome5 name="play" size={20} color="white" />,
+        tabBarIcon: () => <FontAwesome5 name="play" size={14} color="white" />,
         tabBarLabel: () => (
           <Text style={{ 
             color: 'white', 
-            fontSize: RFValue(18), 
+            fontSize: RFValue(14), 
             fontFamily: 'Roboto_400Regular',
             letterSpacing: 1,
-          
-            
           }}>
             Ejercicios
           </Text>
         ),
       }} />
-     
       <Tab.Screen name="Perfil" component={Perfil} options={{
-        tabBarIcon: () => <Octicons name="person-fill" size={26} color="white" />,
+        tabBarIcon: () => <Octicons name="person-fill" size={16} color="white" />,
         tabBarLabel: () => (
           <Text style={{ 
             color: 'white', 
-            fontSize: RFValue(18), 
+            fontSize: RFValue(14), 
             fontFamily: 'Roboto_400Regular',
             letterSpacing: 1,
-
           }}>
             Perfil
           </Text>
         ),
       }} />
-     
     </Tab.Navigator>
   );
 }

@@ -74,7 +74,7 @@ const Perfil = () => {
   };
 
   return (
-    <View style={{ width: "100%", height: "100%", backgroundColor: "black", position: "relative", padding: 20 }}>
+    <View style={{ width: "100%", height: "100%", backgroundColor: "black", position: "relative", padding: 20}}>
       <NavBar />
       <View style={{ marginTop: 20 }}>
         <Text style={{ color: "white", fontSize: 20, textAlign: "center", letterSpacing: 2, fontFamily: 'NunitoSans_400Regular', }}>Cambiar idioma</Text>
@@ -115,7 +115,7 @@ const Perfil = () => {
         </View>
       </View>
 
-      <View style={{ marginTop: 10, width: "115%", display: "flex", justifyContent: "center", alignItems: "center", position: "absolute", top: "90%", gap: 10 }}>
+      <View style={{ width:"95vw", marginTop: 10, display: "flex", position:"absolute", bottom:20, justifyContent: "center", alignItems: "center", gap: 10}}>
         <Pressable onPress={() => setUsuarioOn(false)} style={{ borderWidth: 1, backgroundColor: "red", borderColor: "red", width: 150, borderRadius: 4, height: 35, display: "flex", justifyContent: "center", alignItems: "center" }}>
           <Text style={{ color: "white", fontFamily: "NunitoSans_700Bold", letterSpacing: 1 }}>Cerrar sesión</Text>
         </Pressable>
