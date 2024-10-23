@@ -5,7 +5,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 const styles = StyleSheet.create({
     container__detalleCalentamiento:{
         height:"auto",
-        backgroundColor:"hsl(216, 13%, 8%)",
+        backgroundColor:"black",
         display:"flex",
         gap:8,
         paddingTop:20,

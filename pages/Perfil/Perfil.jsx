@@ -1,17 +1,20 @@
-import { Pressable, Text, View, Alert, Image } from "react-native";
+import { Pressable, Text, View, Image } from "react-native";
 import TarjetaPerfil from "../../components/TarjetaPerfil/TarjetaPerfil.jsx";
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../Context/Context.jsx";
 import { Query, addDoc, collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from "../../firebaseConfig.js";
-import BotonVentana from "../../components/BotonVentana/BotonVentana.jsx";
 import { showMessage } from "react-native-flash-message";
+import Modal from 'react-modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Perfil = () => {
   const { setUsuarioOn, userRegistro, eliminarUsuario } = useContext(CartContext);
   const [userPerfil, setUserPerfil] = useState();
   const [idioma, setIdioma] = useState("https://res.cloudinary.com/dcf9eqqgt/image/upload/v1725984645/APP%20ALFOMBRA%20DE%20FUTBOL%20AMAZON/espana_wyfm4p.png");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const cambiarIdioma = (idioma) => {
     setIdioma(idioma);
@@ -46,76 +49,56 @@ const Perfil = () => {
         console.error("Error al obtener el usuario:", error);
       }
     };
-    fetchUserByEmail("test3@gmail.com"); // Reemplaza con el email que deseas buscar
-  }, []);
+    fetchUserByEmail(userRegistro.email); // Usar email del registro
+  }, [userRegistro.email]);
 
   const handleEliminarCuenta = () => {
-    Alert.alert(
-      "Confirmar eliminación",
-      "¿Estás seguro de que deseas eliminar tu cuenta?",
-      [
-        {
-          text: "Cancelar",
-          style: "cancel"
-        },
-        {
-          text: "Aceptar",
-          onPress: () => {
-            eliminarUsuario(); // Lógica para eliminar el usuario
-            showMessage({
-              message: 'Cuenta eliminada con éxito',
-              type: 'success',
-            });
-          }
-        }
-      ],
-      { cancelable: false }
-    );
+    setModalIsOpen(true);
+  };
+
+  const confirmarEliminacion = () => {
+    eliminarUsuario(); // Lógica para eliminar el usuario
+    toast.success('Cuenta eliminada con éxito');
+    setModalIsOpen(false);
+  };
+
+  const cancelarEliminacion = () => {
+    setModalIsOpen(false);
   };
 
   return (
-    <View style={{ width: "100%", height: "100%", backgroundColor: "black", position: "relative", padding: 20}}>
+    <View style={{ width: "100%", height: "100%", backgroundColor: "black", position: "relative", padding: 20 }}>
       <NavBar />
       <View style={{ marginTop: 20 }}>
-        <Text style={{ color: "white", fontSize: 20, textAlign: "center", letterSpacing: 2, fontFamily: 'NunitoSans_400Regular', }}>Cambiar idioma</Text>
+        <Text style={{ color: "white", fontSize: 20, textAlign: "center", letterSpacing: 2, fontFamily: 'NunitoSans_400Regular' }}>Cambiar idioma</Text>
         <View style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 5, marginTop: 15 }}>
           <View style={{ display: "flex", flexDirection: "row", justifyContent: "center", gap: 15 }}>
-            <Pressable onPress={() => cambiarIdioma(urlIdiomas.españa)}>
-              <Image width={70} height={60} source={{ uri: urlIdiomas.españa }} />
-            </Pressable>
-            <Pressable onPress={() => cambiarIdioma(urlIdiomas.italia)}>
-              <Image width={70} height={60} source={{ uri: urlIdiomas.italia }} />
-            </Pressable>
-            <Pressable onPress={() => cambiarIdioma(urlIdiomas.francia)}>
-              <Image width={70} height={60} source={{ uri: urlIdiomas.francia }} />
-            </Pressable>
+            {Object.keys(urlIdiomas).slice(0, 3).map((key) => (
+              <Pressable key={key} onPress={() => cambiarIdioma(urlIdiomas[key])}>
+                <Image style={{ width: 70, height: 60 }} source={{ uri: urlIdiomas[key] }} resizeMode="contain" />
+              </Pressable>
+            ))}
           </View>
           <View style={{ display: "flex", flexDirection: "row", justifyContent: "center", gap: 15 }}>
-            <Pressable onPress={() => cambiarIdioma(urlIdiomas.inglaterra)}>
-              <Image width={70} height={60} source={{ uri: urlIdiomas.inglaterra }} />
-            </Pressable>
-            <Pressable onPress={() => cambiarIdioma(urlIdiomas.paisesBajos)}>
-              <Image width={70} height={60} source={{ uri: urlIdiomas.paisesBajos }} />
-            </Pressable>
-            <Pressable onPress={() => cambiarIdioma(urlIdiomas.alemania)}>
-              <Image width={70} height={60} source={{ uri: urlIdiomas.alemania }} />
-            </Pressable>
+            {Object.keys(urlIdiomas).slice(3).map((key) => (
+              <Pressable key={key} onPress={() => cambiarIdioma(urlIdiomas[key])}>
+                <Image style={{ width: 70, height: 60 }} source={{ uri: urlIdiomas[key] }} resizeMode="contain" />
+              </Pressable>
+            ))}
           </View>
         </View>
       </View>
 
       <View style={{ marginTop: 20 }}>
-        <Text style={{ color: "white", fontSize: 20, textAlign: "center", letterSpacing: 2, fontFamily: 'NunitoSans_400Regular', }}>Idioma actual</Text>
+        <Text style={{ color: "white", fontSize: 20, textAlign: "center", letterSpacing: 2, fontFamily: 'NunitoSans_400Regular' }}>Idioma actual</Text>
         <View style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 5, marginTop: 15 }}>
-          <View style={{ display: "flex", flexDirection: "row", justifyContent: "center", gap: 15 }}>
-            <Pressable>
-              <Image width={70} height={60} source={{ uri: idioma }} />
-            </Pressable>
-          </View>
+          <Pressable>
+            <Image style={{ width: 70, height: 60 }} source={{ uri: idioma }} resizeMode="contain" />
+          </Pressable>
         </View>
       </View>
 
-      <View style={{ width:"95vw", marginTop: 10, display: "flex", position:"absolute", bottom:20, justifyContent: "center", alignItems: "center", gap: 10}}>
+      <View style={{ width: "95vw", marginTop: 10, display: "flex", position: "absolute", bottom: 20, justifyContent: "center", alignItems: "center", gap: 10 }}>
         <Pressable onPress={() => setUsuarioOn(false)} style={{ borderWidth: 1, backgroundColor: "red", borderColor: "red", width: 150, borderRadius: 4, height: 35, display: "flex", justifyContent: "center", alignItems: "center" }}>
           <Text style={{ color: "white", fontFamily: "NunitoSans_700Bold", letterSpacing: 1 }}>Cerrar sesión</Text>
         </Pressable>
@@ -124,6 +107,39 @@ const Perfil = () => {
           <Text style={{ color: "white", fontFamily: "NunitoSans_700Bold", letterSpacing: 1 }}>Eliminar cuenta</Text>
         </Pressable>
       </View>
+
+      <Modal 
+        isOpen={modalIsOpen} 
+        onRequestClose={cancelarEliminacion}
+        style={{
+          content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            transform: 'translate(-50%, -50%)',
+            width: '80%',  
+            maxWidth: '300px',
+            padding: '20px',
+            borderRadius: '8px',
+            backgroundColor: "hsl(199, 76%, 28%)",
+            color: 'white',
+          }
+        }}
+      >
+        <Text style={{ fontSize: 18, marginBottom: 10, color:"white" }}>Eliminar cuenta</Text>
+        <Text style={{color:"white"}}>¿Estás seguro de que deseas eliminar tu cuenta?</Text>
+        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Pressable onPress={cancelarEliminacion} style={{ marginRight: 10 }}>
+            <Text style={{ color: 'white' }}>Cancelar</Text>
+          </Pressable>
+          <Pressable onPress={confirmarEliminacion}>
+            <Text style={{ color: 'red' }}>Aceptar</Text>
+          </Pressable>
+        </View>
+      </Modal>
+
+      <ToastContainer />
     </View>
   );
 };

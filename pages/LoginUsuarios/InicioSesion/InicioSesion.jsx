@@ -36,7 +36,11 @@ const InicioSesion = () => {
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched, setFieldTouched }) => (
         <View style={styles.container__inicioSesion}>
-<Image width={230} height={45} source={{uri:"https://res.cloudinary.com/dcf9eqqgt/image/upload/v1726996815/APP%20ALFOMBRA%20DE%20FUTBOL%20AMAZON/icon_xoqflq.jpg"}}></Image>
+<Image 
+  source={{ uri: "https://res.cloudinary.com/dcf9eqqgt/image/upload/v1726996815/APP%20ALFOMBRA%20DE%20FUTBOL%20AMAZON/icon_xoqflq.jpg" }} 
+  style={{ width: 250, height: 70 }} 
+  resizeMode="contain" 
+/>
 
           <View style={styles.container__form}>
             <TextInput
